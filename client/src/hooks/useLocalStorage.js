@@ -1,32 +1,23 @@
-import { useState } from 'react';
+import React from 'react'
 
+function useLocalStorage(key, initialValue) {
+    const [value, setValue] = useState(() => {
+        const item =window.localStorage.getItem(key)
 
+        return item ? JSON.parse(item) : initialValue
+    })
 
-export function useInput(initialValue) {
-    const [value, setValue] = useState(initialValue)
+        const setNewValue = (newValue) => {
+        console.log(newValue)
 
-    const customSetter = (newValue) => {
-        console.log("New Value:", newValue)
-        setValue(newValue)
-    }
+            setValue(newValue);
 
-    return [value, customSetter]
+            window.localStorage.setItem(key, JSON.stringify(newValue))
+
+        }
+        return [setValue, setNewValue];
 
 }
 
 
-export function useLocalStorage(key, initialValue) {
-    const [storedValue, setStoredValue] = useState(() => {
-        const item = window.localStorage.getItem(key);
-
-        return item ? JSON.parse(item) : initialValue;
-
-    });
-
-    const setValue = value => {
-        setStoredValue(value);
-        window.localStorage.setItem(key, JSON.stringify(value));
-    };
-
-    return [storedValue, setValue];
-} 
+export default useLocalStorage

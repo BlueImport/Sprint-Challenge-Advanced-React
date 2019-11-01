@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
-function Players(props) {
+function useDarkMode(props) {
     console.log(props)
     const [someValue, setSomeValue] = useLocalStorage('key', false);
 

@@ -4,10 +4,20 @@ import Players from './components/Players';
 import { usePlayers } from './components/api';
 import './App.css';
 
-function App(props) {
-  const[player, setPlayer] = useLocalStorage('player', 'country');
-  const[search, setSearch] = useLocalStorage('search', 1);
-  const[players, setplayers] = usePlayers();
+function App() {
+  const [player, setPlayer] =setState([]);
+
+  useEffect(() => {
+    axios
+        .get('http://localhost:5000/api/players')
+        .then(res => {
+          console.log(res.data)
+          .catch(err => {
+            console.log(err.response)
+          })
+        })
+  
+  }, [])
 
   return (
     <>
