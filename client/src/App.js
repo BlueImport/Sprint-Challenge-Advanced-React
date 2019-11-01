@@ -1,48 +1,47 @@
-import React from 'react';
-import { useLocalStorage } from './hooks/useLocalStorage';
-import Players from './components/Players';
-import { usePlayers } from './components/api';
+import React, { Component }from 'react';
+import axios from 'axios';
 import './App.css';
+import Display from './components/Display';
+import Navbar from './components/Navbar';
 
-function App() {
-  const [player, setPlayer] =setState([]);
+class App extends Component {
+  constructor(){
+    super();
 
-  useEffect(() => {
+    this.state = {
+      players: []
+    }
+  }
+
+  componentDidMount() {
     axios
         .get('http://localhost:5000/api/players')
         .then(res => {
-          console.log(res.data)
-          .catch(err => {
-            console.log(err.response)
-          })
+          this.setState({players: res.data})
         })
-  
-  }, [])
+        .catch(err => console.log(err));
 
+  }
+
+
+  render() {
   return (
-    <>
-    <h1>Women's World Cup - 2019</h1>
-
-    <select value={player} onChange={e => setPlayer(e.target.value)}> 
-      <option value="name">Name</option>
-      <option value="country">Country</option>
-      <option value="searches">Amount of Searches</option>
-    </select>
-
-    <input
-      type='number' 
-      placeholder='Search Count' 
-      value={search} 
-      onChange={e => setSearch(e.target.value)} 
-    />
-
-    <div>
-      {players.map((player, index) => (
-        <Players player={player} key={index} />
-    ))}
+    <div className='App'>
+      <Navbar />
+      {this.state.players.map(player => (
+        <Display 
+          name={player.name}
+          country={player.country}
+          searches={player.searches}
+          id={player.id}
+          key={player.id}
+        />
+      ))}
     </div>
-    </>
+    
   );
 }
+}
+
 
 export default App;
