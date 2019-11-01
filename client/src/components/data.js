@@ -72,7 +72,7 @@ exports.data = [
 { name: "Ellen White", country: "England", searches: 1 },
 { name: "Hedvig Lindahl", country: "Sweden", searches: 1 },
 { name: "Fridolina Rolfö", country: "Sweden", searches: 1 },
-{ name: "Alexandra Popp", country: "Germany", searches:
+{ name: "Alexandra Popp", country: "Germany", searches: 1 },
 { name: "Jill Scott", country: "England", searches: 1 },
 { name: "Karen Carney", country: "England", searches: 1 },
 { name: "María Pilar León", country: "Spain", searches: 1 },
@@ -100,4 +100,4 @@ exports.data = [
 { name: "Karen Bardsley", country: "England", searches: 1 },
 { name: "Jordyn Huitema", country: "Canada", searches: 1 },
 { name: "Tierna Davidson", country: "United States", searches: 1 },
-];
+]
